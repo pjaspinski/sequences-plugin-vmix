@@ -1,1 +1,1 @@
-export var name = 'VMix';
+export const name = 'VMix';
