@@ -3,7 +3,7 @@
 		"experimentalDecorators": true,
 		"module": "esnext",
 		"esModuleInterop": true,
-		"target": "es5",
+		"target": "esnext",
 		"moduleResolution": "node",
 		"sourceMap": false,
 		"outDir": "dist",
