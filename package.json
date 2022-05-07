@@ -1,0 +1,24 @@
+{
+  "name": "sequences-plugin-vmix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjaspinski/sequences-plugin-vmix.git"
+  },
+  "author": "Paweł Jaśpiński",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pjaspinski/sequences-plugin-vmix/issues"
+  },
+  "homepage": "https://github.com/pjaspinski/sequences-plugin-vmix#readme",
+  "devDependencies": {
+    "typescript": "^4.6.4"
+  }
+}
