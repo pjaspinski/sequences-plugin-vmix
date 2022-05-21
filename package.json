@@ -25,6 +25,7 @@
   "homepage": "https://github.com/pjaspinski/sequences-plugin-vmix#readme",
   "devDependencies": {
     "husky": "^7.0.0",
+    "sequences-types": "github:pjaspinski/sequences-types",
     "typescript": "^4.6.4"
   }
 }
