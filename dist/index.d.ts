@@ -1,5 +1,3 @@
-import { Input, PluginDefinition } from 'sequences-types';
-export declare const name = "VMix";
-export declare const settingsFields: Input[];
-declare const vmixPlugin: PluginDefinition;
-export default vmixPlugin;
+import { PluginDefinition } from 'sequences-types';
+declare const plugin: PluginDefinition;
+export default plugin;

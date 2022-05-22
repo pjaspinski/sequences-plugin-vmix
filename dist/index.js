@@ -1,5 +1,6 @@
-export const name = 'VMix';
-export const settingsFields = [
+import net from 'net';
+const name = 'VMix';
+const settingsFields = [
     {
         type: 'TEXT',
         id: 'ip',
@@ -12,10 +13,19 @@ export const settingsFields = [
         type: 'TEXT',
         id: 'port',
         required: true,
-        value: '8888',
+        value: '8099',
         regex: '^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$',
-        label: 'Port',
+        label: "Port (fixed in VMix, so you probably don't want to change this)",
     },
 ];
-const vmixPlugin = { name, settingsFields };
-export default vmixPlugin;
+const socket = new net.Socket();
+const setup = (options) => {
+    const { ip, port } = options;
+    socket.connect(+port, ip, () => console.log('Connected to a VMix instance'));
+};
+const destroy = () => {
+    socket.end();
+    socket.destroy();
+};
+const plugin = { name, settingsFields, setup, destroy };
+export default plugin;
