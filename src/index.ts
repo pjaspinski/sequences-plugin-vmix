@@ -1,9 +1,9 @@
-import { Input, PluginTemplate, PluginSettings } from 'sequences-types';
+import { Input, PluginTemplate, PluginSettings, PluginStatus } from 'sequences-types';
 import net from 'net';
 
 class VMixPlugin extends PluginTemplate {
 	name = 'VMix';
-	settingsFields: Input[] = [
+	settingsInputs: Input[] = [
 		{
 			type: 'TEXT',
 			id: 'ip',
@@ -21,12 +21,21 @@ class VMixPlugin extends PluginTemplate {
 			label: "Port (fixed in VMix, so you probably don't want to change this)",
 		},
 	];
-	socket = new net.Socket();
+	socket: net.Socket;
+
+	constructor(id: number) {
+		super(id);
+	}
 
 	setup = (options: PluginSettings) => {
+		this.status = PluginStatus.LOADING;
 		const { ip, port } = options;
-
-		this.socket.connect(+port, ip, () => console.log('Connected to a VMix instance'));
+		this.socket = new net.Socket();
+		try {
+			this.socket.connect(+port, ip, () => (this.status = PluginStatus.RUNNING));
+		} catch (error) {
+			this.status = PluginStatus.ERROR;
+		}
 	};
 
 	destroy = () => {
