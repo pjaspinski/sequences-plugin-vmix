@@ -28,14 +28,14 @@ class VMixPlugin extends PluginTemplate {
 	}
 
 	setup = (options: PluginSettings) => {
-		this.status = PluginStatus.LOADING;
-		const { ip, port } = options;
-		this.socket = new net.Socket();
-		try {
-			this.socket.connect(+port, ip, () => (this.status = PluginStatus.RUNNING));
-		} catch (error) {
-			this.status = PluginStatus.ERROR;
-		}
+		// const { ip, port } = options;
+		// this.socket = new net.Socket();
+		// try {
+		// 	this.socket.connect(+port, ip, () => (this.status = PluginStatus.RUNNING));
+		// } catch (error) {
+		// 	this.status = PluginStatus.ERROR;
+		// }
+		setTimeout(() => this.setStatus(PluginStatus.RUNNING), 2000);
 	};
 
 	destroy = () => {
