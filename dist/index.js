@@ -1,4 +1,5 @@
 import { PluginTemplate, PluginStatus } from 'sequences-types';
+import net from 'net';
 class VMixPlugin extends PluginTemplate {
     name = 'VMix';
     settingsInputs = [
@@ -24,14 +25,19 @@ class VMixPlugin extends PluginTemplate {
         super(id);
     }
     setup = (options) => {
-        // const { ip, port } = options;
-        // this.socket = new net.Socket();
-        // try {
-        // 	this.socket.connect(+port, ip, () => (this.status = PluginStatus.RUNNING));
-        // } catch (error) {
-        // 	this.status = PluginStatus.ERROR;
-        // }
-        setTimeout(() => this.setStatus(PluginStatus.RUNNING), 2000);
+        const { ip, port } = options;
+        this.socket = new net.Socket();
+        try {
+            this.socket.connect(+port, ip, () => this.setStatus(PluginStatus.RUNNING));
+            this.socket.on('error', () => {
+                console.log(this);
+                this.setStatus(PluginStatus.ERROR);
+                this.destroy();
+            });
+        }
+        catch (error) {
+            this.setStatus(PluginStatus.ERROR);
+        }
     };
     destroy = () => {
         this.socket.end();
