@@ -1,38 +1,50 @@
 import { PluginTemplate, PluginStatus } from 'sequences-types';
 import net from 'net';
-class VMixPlugin extends PluginTemplate {
-    name = 'VMix';
-    settingsInputs = [
-        {
-            type: 'TEXT',
-            id: 'ip',
-            required: true,
-            value: '127.0.0.1',
-            regex: '^[0-9]+.[0-9]+.[0-9]+.[0-9]+$',
-            label: 'IP address',
-        },
-        {
-            type: 'TEXT',
-            id: 'port',
-            required: true,
-            value: '8099',
-            regex: '^((6553[0-5])|(655[0-2][0-9])|(65[0-4][0-9]{2})|(6[0-4][0-9]{3})|([1-5][0-9]{4})|([0-5]{0,5})|([0-9]{1,4}))$',
-            label: "Port (fixed in VMix, so you probably don't want to change this)",
-        },
-    ];
+import settingsInputs from './settingsInputs.js';
+import { parseInputsFromXML } from './utils.js';
+import actions, { addInputsToActions } from './actions.js';
+class vMixPlugin extends PluginTemplate {
+    name = 'vMix';
+    id = 0;
+    settingsInputs = settingsInputs;
+    actions = actions;
     socket;
-    constructor(id) {
-        super(id);
+    pollingInterval = 1000;
+    pollingTimer = null;
+    inputs = [];
+    constructor() {
+        super();
     }
     setup = (options) => {
         const { ip, port } = options;
         this.socket = new net.Socket();
         try {
-            this.socket.connect(+port, ip, () => this.setStatus(PluginStatus.RUNNING));
+            this.socket.connect(+port, ip, () => {
+                // Setting up vMix API polling
+                this.pollingTimer = setInterval(() => {
+                    this.socket.write('XML\r\n', (error) => {
+                        if (error) {
+                            this.setStatus(PluginStatus.ERROR);
+                            this.destroy();
+                        }
+                    });
+                }, this.pollingInterval);
+            });
             this.socket.on('error', () => {
-                console.log(this);
                 this.setStatus(PluginStatus.ERROR);
                 this.destroy();
+            });
+            this.socket.on('data', (data) => {
+                // First message from vMix - confirms connection
+                if (data.toString().startsWith('VERSION')) {
+                    this.setStatus(PluginStatus.RUNNING);
+                    return;
+                }
+                // Polling response
+                if (data.toString().startsWith('XML')) {
+                    const splitData = data.toString().split(/\r?\n/);
+                    this.inputs = splitData.length >= 2 ? parseInputsFromXML(splitData[1]) : [];
+                }
             });
         }
         catch (error) {
@@ -40,8 +52,12 @@ class VMixPlugin extends PluginTemplate {
         }
     };
     destroy = () => {
+        clearInterval(this.pollingTimer);
         this.socket.end();
         this.socket.destroy();
     };
+    getActions = () => {
+        return addInputsToActions(this.actions, this.inputs);
+    };
 }
-export default VMixPlugin;
+export default vMixPlugin;

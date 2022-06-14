@@ -29,5 +29,8 @@
     "husky": "^7.0.0",
     "sequences-types": "github:pjaspinski/sequences-types",
     "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.0.8"
   }
 }
