@@ -8,7 +8,6 @@ export const parseInputsFromXML = (xml: string): vMixInput[] => {
 	});
 	const vMixObj = parser.parse(xml);
 	const inputs = vMixObj?.vmix?.inputs?.input;
-
 	if (inputs) {
 		return inputs.map((input) => ({
 			key: input.key,
@@ -17,4 +16,8 @@ export const parseInputsFromXML = (xml: string): vMixInput[] => {
 		}));
 	}
 	return [];
+};
+
+export const capitalizeFirstLetter = (text: string): string => {
+	return text.charAt(0).toUpperCase() + text.slice(1);
 };

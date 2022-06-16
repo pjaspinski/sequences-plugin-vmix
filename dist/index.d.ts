@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { PluginTemplate, PluginSettings } from 'sequences-types';
+import { PluginTemplate, PluginSettings, ActiveAction } from 'sequences-types';
 import net from 'net';
 import { vMixInput } from './types.js';
 declare class vMixPlugin extends PluginTemplate {
@@ -15,5 +15,6 @@ declare class vMixPlugin extends PluginTemplate {
     setup: (options: PluginSettings) => void;
     destroy: () => void;
     getActions: () => import("./types.js").vMixAction[];
+    handleAction: (action: ActiveAction) => void;
 }
 export default vMixPlugin;
