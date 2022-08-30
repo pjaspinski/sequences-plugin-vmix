@@ -1,4 +1,4 @@
-import { PluginTemplate, PluginStatus, } from 'sequences-types';
+import { PluginTemplate } from 'sequences-types';
 import net from 'net';
 import settingsInputs from './settingsInputs.js';
 import { capitalizeFirstLetter, parseInputsFromXML } from './utils.js';
@@ -24,14 +24,14 @@ class vMixPlugin extends PluginTemplate {
                 this.pollingTimer = setInterval(() => {
                     this.socket.write('XML\r\n', (error) => {
                         if (error) {
-                            this.setStatus(PluginStatus.ERROR);
+                            this.setStatus('ERROR');
                             this.destroy();
                         }
                     });
                 }, this.pollingInterval);
             });
             this.socket.on('error', () => {
-                this.setStatus(PluginStatus.ERROR);
+                this.setStatus('ERROR');
                 this.destroy();
             });
             this.socket.on('data', (data) => {
@@ -44,13 +44,13 @@ class vMixPlugin extends PluginTemplate {
                     const splitData = data.toString().split(/\r?\n/);
                     if (splitData.length >= 2 && splitData[1])
                         this.inputs = parseInputsFromXML(splitData[1]);
-                    if (this.getStatus() === PluginStatus.LOADING)
-                        this.setStatus(PluginStatus.RUNNING);
+                    if (this.getStatus() === 'LOADING')
+                        this.setStatus('RUNNING');
                 }
             });
         }
         catch (error) {
-            this.setStatus(PluginStatus.ERROR);
+            this.setStatus('ERROR');
         }
     };
     destroy = () => {
@@ -69,7 +69,7 @@ class vMixPlugin extends PluginTemplate {
         console.log(message);
         this.socket.write(message, (error) => {
             if (error) {
-                this.setStatus(PluginStatus.ERROR);
+                this.setStatus('ERROR');
                 this.destroy();
             }
         });
