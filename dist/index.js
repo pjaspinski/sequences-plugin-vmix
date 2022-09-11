@@ -2,7 +2,7 @@ import { PluginTemplate } from 'sequences-types';
 import net from 'net';
 import settingsInputs from './settingsInputs.js';
 import { capitalizeFirstLetter, parseInputsFromXML } from './utils.js';
-import actions, { addInputsToActions } from './actions.js';
+import actions, { addInputsToActions } from './actions/index.js';
 class vMixPlugin extends PluginTemplate {
     name = 'vMix';
     id = 0;
@@ -54,7 +54,7 @@ class vMixPlugin extends PluginTemplate {
         }
     };
     destroy = () => {
-        clearInterval(this.pollingTimer);
+        this.pollingTimer && clearInterval(this.pollingTimer);
         this.socket.end();
         this.socket.destroy();
     };

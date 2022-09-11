@@ -1,5 +1,6 @@
 import { Action, DropdownInput } from 'sequences-types';
-import { vMixAction, vMixInput } from './types';
+import { vMixAction, vMixInput } from '../types.js';
+import audioActions from './audio.js';
 
 const actions: vMixAction[] = [
 	{
@@ -36,6 +37,7 @@ const actions: vMixAction[] = [
 		settingsInputs: [],
 		addInputField: true,
 	},
+	...audioActions,
 ];
 
 export default actions;
