@@ -2,8 +2,9 @@ import { DropdownInput } from 'sequences-types';
 import { vMixAction, vMixInput } from '../types.js';
 import audioActions from './audio.js';
 import transitionActions from './transition.js';
+import outputActions from './output.js';
 
-const actions: vMixAction[] = [...audioActions, ...transitionActions];
+const actions: vMixAction[] = [...audioActions, ...transitionActions, ...outputActions];
 
 export default actions;
 

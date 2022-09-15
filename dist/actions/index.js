@@ -1,6 +1,7 @@
 import audioActions from './audio.js';
 import transitionActions from './transition.js';
-const actions = [...audioActions, ...transitionActions];
+import outputActions from './output.js';
+const actions = [...audioActions, ...transitionActions, ...outputActions];
 export default actions;
 export const addInputsToActions = (actions, inputs) => {
     const inputsField = {
