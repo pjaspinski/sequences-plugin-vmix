@@ -1,44 +1,9 @@
-import { Action, DropdownInput } from 'sequences-types';
+import { DropdownInput } from 'sequences-types';
 import { vMixAction, vMixInput } from '../types.js';
 import audioActions from './audio.js';
+import transitionActions from './transition.js';
 
-const actions: vMixAction[] = [
-	{
-		id: 0,
-		name: 'Cut',
-		settingsInputs: [
-			{
-				id: 'duration',
-				type: 'NUMBER',
-				label: 'Duration (ms)',
-				value: 200,
-				required: true,
-			},
-		],
-		addInputField: true,
-	},
-	{
-		id: 1,
-		name: 'Fade',
-		settingsInputs: [
-			{
-				id: 'duration',
-				type: 'NUMBER',
-				label: 'Duration (ms)',
-				value: 200,
-				required: true,
-			},
-		],
-		addInputField: true,
-	},
-	{
-		id: 2,
-		name: 'OverlayInput1',
-		settingsInputs: [],
-		addInputField: true,
-	},
-	...audioActions,
-];
+const actions: vMixAction[] = [...audioActions, ...transitionActions];
 
 export default actions;
 
