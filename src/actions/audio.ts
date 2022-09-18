@@ -1,5 +1,5 @@
 import { DropdownInput } from 'sequences-types';
-import { vMixAction } from '../types.js';
+import { vMixAction } from '../types';
 
 const audioBuses = ['M', 'A', 'B', 'C', 'D', 'E', 'F', 'G'].map((bus) => ({
 	text: bus,

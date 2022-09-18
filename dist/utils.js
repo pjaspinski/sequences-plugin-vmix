@@ -1,11 +1,15 @@
-import { XMLParser } from 'fast-xml-parser';
-export const parseInputsFromXML = (xml) => {
-    const parser = new XMLParser({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.capitalizeFirstLetter = exports.parseInputsFromXML = void 0;
+const fast_xml_parser_1 = require("fast-xml-parser");
+const parseInputsFromXML = (xml) => {
+    var _a, _b;
+    const parser = new fast_xml_parser_1.XMLParser({
         ignoreAttributes: false,
         attributeNamePrefix: '',
     });
     const vMixObj = parser.parse(xml);
-    const inputs = vMixObj?.vmix?.inputs?.input;
+    const inputs = (_b = (_a = vMixObj === null || vMixObj === void 0 ? void 0 : vMixObj.vmix) === null || _a === void 0 ? void 0 : _a.inputs) === null || _b === void 0 ? void 0 : _b.input;
     if (inputs) {
         return inputs.map((input) => ({
             key: input.key,
@@ -15,6 +19,8 @@ export const parseInputsFromXML = (xml) => {
     }
     return [];
 };
-export const capitalizeFirstLetter = (text) => {
+exports.parseInputsFromXML = parseInputsFromXML;
+const capitalizeFirstLetter = (text) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
 };
+exports.capitalizeFirstLetter = capitalizeFirstLetter;

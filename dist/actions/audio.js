@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const audioBuses = ['M', 'A', 'B', 'C', 'D', 'E', 'F', 'G'].map((bus) => ({
     text: bus,
     value: bus,
@@ -412,4 +414,4 @@ const audioActions = [
         addInputField: true,
     },
 ];
-export default audioActions;
+exports.default = audioActions;

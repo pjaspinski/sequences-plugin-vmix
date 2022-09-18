@@ -1,5 +1,5 @@
 import { DropdownInput } from 'sequences-types';
-import { vMixAction } from '../types.js';
+import { vMixAction } from '../types';
 
 const mixes = ['1', '2', '3', '4'].map((mix) => ({
 	text: mix,

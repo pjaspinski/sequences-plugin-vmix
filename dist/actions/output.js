@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const mixes = ['1', '2', '3', '4'].map((mix) => ({
     text: mix,
     value: mix,
@@ -170,4 +172,4 @@ const outputActions = [
         addInputField: false,
     },
 ];
-export default outputActions;
+exports.default = outputActions;

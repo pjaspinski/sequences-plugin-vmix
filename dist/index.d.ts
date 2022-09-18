@@ -1,12 +1,12 @@
 /// <reference types="node" />
 import { PluginTemplate, PluginSettings, ActiveAction } from 'sequences-types';
 import net from 'net';
-import { vMixInput } from './types.js';
+import { vMixInput } from './types';
 declare class vMixPlugin extends PluginTemplate {
     name: string;
     id: number;
     settingsInputs: import("sequences-types").Input[];
-    actions: import("./types.js").vMixAction[];
+    actions: import("./types").vMixAction[];
     socket: net.Socket;
     pollingInterval: number;
     pollingTimer: NodeJS.Timer;
@@ -14,7 +14,7 @@ declare class vMixPlugin extends PluginTemplate {
     constructor();
     setup: (options: PluginSettings) => void;
     destroy: () => void;
-    getActions: () => import("./types.js").vMixAction[];
+    getActions: () => import("./types").vMixAction[];
     handleAction: (action: ActiveAction) => void;
 }
 export default vMixPlugin;

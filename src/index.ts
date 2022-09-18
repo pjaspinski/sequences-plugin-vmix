@@ -1,9 +1,9 @@
 import { PluginTemplate, PluginSettings, Action, ActiveAction } from 'sequences-types';
 import net from 'net';
-import settingsInputs from './settingsInputs.js';
-import { vMixInput } from './types.js';
-import { capitalizeFirstLetter, parseInputsFromXML } from './utils.js';
-import actions, { addInputsToActions } from './actions/index.js';
+import settingsInputs from './settingsInputs';
+import { vMixInput } from './types';
+import { capitalizeFirstLetter, parseInputsFromXML } from './utils';
+import actions, { addInputsToActions } from './actions/index';
 
 class vMixPlugin extends PluginTemplate {
 	name = 'vMix';

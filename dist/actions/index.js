@@ -1,9 +1,15 @@
-import audioActions from './audio.js';
-import transitionActions from './transition.js';
-import outputActions from './output.js';
-const actions = [...audioActions, ...transitionActions, ...outputActions];
-export default actions;
-export const addInputsToActions = (actions, inputs) => {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.addInputsToActions = void 0;
+const audio_1 = __importDefault(require("./audio"));
+const transition_1 = __importDefault(require("./transition"));
+const output_1 = __importDefault(require("./output"));
+const actions = [...audio_1.default, ...transition_1.default, ...output_1.default];
+exports.default = actions;
+const addInputsToActions = (actions, inputs) => {
     const inputsField = {
         id: 'input',
         type: 'DROPDOWN',
@@ -15,7 +21,7 @@ export const addInputsToActions = (actions, inputs) => {
     };
     return actions.map((action) => {
         return action.addInputField
-            ? { ...action, settingsInputs: [...action.settingsInputs, inputsField] }
-            : action;
+            ? Object.assign(Object.assign({}, action), { settingsInputs: [...action.settingsInputs, inputsField] }) : action;
     });
 };
+exports.addInputsToActions = addInputsToActions;

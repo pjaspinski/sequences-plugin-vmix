@@ -1,12 +1,12 @@
 {
 	"compilerOptions": {
 		"experimentalDecorators": true,
-		"module": "esnext",
+		"module": "commonjs",
 		"esModuleInterop": true,
-		"target": "esnext",
 		"moduleResolution": "node",
 		"sourceMap": false,
 		"outDir": "dist",
+		"target": "ES6",
 		"emitDecoratorMetadata": true,
 		"resolveJsonModule": true,
 		"declaration": true

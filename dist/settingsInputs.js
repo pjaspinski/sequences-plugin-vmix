@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const settingsInputs = [
     {
         type: 'TEXT',
@@ -16,4 +18,4 @@ const settingsInputs = [
         label: "Port (fixed in vMix, so you probably don't want to change this)",
     },
 ];
-export default settingsInputs;
+exports.default = settingsInputs;
