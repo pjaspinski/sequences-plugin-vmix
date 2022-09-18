@@ -3,8 +3,14 @@ import { vMixAction, vMixInput } from '../types';
 import audioActions from './audio';
 import transitionActions from './transition';
 import outputActions from './output';
+import titleActions from './title';
 
-const actions: vMixAction[] = [...audioActions, ...transitionActions, ...outputActions];
+const actions: vMixAction[] = [
+	...audioActions,
+	...transitionActions,
+	...outputActions,
+	...titleActions,
+];
 
 export default actions;
 
