@@ -13,7 +13,7 @@ const mixesDropdownInput: DropdownInput = {
 	options: mixes,
 	id: 'Bus',
 	required: true,
-	label: 'Audio bus',
+	label: 'Mix',
 };
 
 const audioActions: vMixAction[] = [

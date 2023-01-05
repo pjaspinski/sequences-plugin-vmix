@@ -7,7 +7,13 @@ exports.addInputsToActions = void 0;
 const audio_1 = __importDefault(require("./audio"));
 const transition_1 = __importDefault(require("./transition"));
 const output_1 = __importDefault(require("./output"));
-const actions = [...audio_1.default, ...transition_1.default, ...output_1.default];
+const title_1 = __importDefault(require("./title"));
+const actions = [
+    ...audio_1.default,
+    ...transition_1.default,
+    ...output_1.default,
+    ...title_1.default,
+];
 exports.default = actions;
 const addInputsToActions = (actions, inputs) => {
     const inputsField = {
