@@ -9,6 +9,7 @@ export const parseInputsFromXML = (xml: string): vMixInput[] => {
 	const vMixObj = parser.parse(xml);
 	const inputs = vMixObj?.vmix?.inputs?.input;
 	if (inputs) {
+		console.log(inputs);
 		return inputs.map((input) => ({
 			key: input.key,
 			title: input.title,
