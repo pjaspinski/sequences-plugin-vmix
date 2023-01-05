@@ -14,7 +14,7 @@ const parseInputsFromXML = (xml) => {
         console.log(inputs);
         return inputs.map((input) => ({
             key: input.key,
-            title: input.title,
+            title: `${input.number} - ${input.title}`,
             number: input.number,
         }));
     }

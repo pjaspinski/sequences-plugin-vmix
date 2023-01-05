@@ -12,7 +12,7 @@ export const parseInputsFromXML = (xml: string): vMixInput[] => {
 		console.log(inputs);
 		return inputs.map((input) => ({
 			key: input.key,
-			title: input.title,
+			title: `${input.number} - ${input.title}`,
 			number: input.number,
 		}));
 	}
