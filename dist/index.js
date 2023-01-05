@@ -38,7 +38,7 @@ class vMixPlugin extends sequences_types_1.PluginTemplate {
         this.id = 0;
         this.settingsInputs = settingsInputs_1.default;
         this.actions = index_1.default;
-        this.pollingInterval = 1000;
+        this.pollingInterval = 5000;
         this.pollingTimer = null;
         this.inputs = [];
         this.setup = (options) => {
@@ -67,6 +67,8 @@ class vMixPlugin extends sequences_types_1.PluginTemplate {
                     }
                     // Polling response
                     if (data.toString().startsWith('XML')) {
+                        console.log('---');
+                        console.log(data.toString());
                         const splitData = data.toString().split(/\r?\n/);
                         if (splitData.length >= 2 && splitData[1])
                             this.inputs = (0, utils_1.parseInputsFromXML)(splitData[1]);

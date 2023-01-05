@@ -8,10 +8,16 @@ const parseInputsFromXML = (xml) => {
         ignoreAttributes: false,
         attributeNamePrefix: '',
     });
-    const vMixObj = parser.parse(xml);
+    let vMixObj;
+    try {
+        vMixObj = parser.parse(xml);
+    }
+    catch (e) {
+        console.error('Failed to parse XML', e);
+        return [];
+    }
     const inputs = (_b = (_a = vMixObj === null || vMixObj === void 0 ? void 0 : vMixObj.vmix) === null || _a === void 0 ? void 0 : _a.inputs) === null || _b === void 0 ? void 0 : _b.input;
     if (inputs) {
-        console.log(inputs);
         return inputs.map((input) => ({
             key: input.key,
             title: `${input.number} - ${input.title}`,

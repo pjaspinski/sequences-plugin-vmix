@@ -6,10 +6,15 @@ export const parseInputsFromXML = (xml: string): vMixInput[] => {
 		ignoreAttributes: false,
 		attributeNamePrefix: '',
 	});
-	const vMixObj = parser.parse(xml);
+	let vMixObj: any;
+	try {
+		vMixObj = parser.parse(xml);
+	} catch (e) {
+		console.error('Failed to parse XML', e);
+		return [];
+	}
 	const inputs = vMixObj?.vmix?.inputs?.input;
 	if (inputs) {
-		console.log(inputs);
 		return inputs.map((input) => ({
 			key: input.key,
 			title: `${input.number} - ${input.title}`,
