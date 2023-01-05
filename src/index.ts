@@ -48,8 +48,6 @@ class vMixPlugin extends PluginTemplate {
 
 				// Polling response
 				if (data.toString().startsWith('XML')) {
-					console.log('---');
-					console.log(data.toString());
 					const splitData = data.toString().split(/\r?\n/);
 					if (splitData.length >= 2 && splitData[1])
 						this.inputs = parseInputsFromXML(splitData[1]);

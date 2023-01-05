@@ -67,8 +67,6 @@ class vMixPlugin extends sequences_types_1.PluginTemplate {
                     }
                     // Polling response
                     if (data.toString().startsWith('XML')) {
-                        console.log('---');
-                        console.log(data.toString());
                         const splitData = data.toString().split(/\r?\n/);
                         if (splitData.length >= 2 && splitData[1])
                             this.inputs = (0, utils_1.parseInputsFromXML)(splitData[1]);
